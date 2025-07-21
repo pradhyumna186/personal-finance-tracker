@@ -19,7 +19,7 @@ import type {
 
 class ApiService {
   private api: AxiosInstance;
-  private baseURL = 'http://localhost:8080/api';
+  private baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
   constructor() {
     this.api = axios.create({
@@ -31,22 +31,22 @@ class ApiService {
 
     // Request interceptor to add auth token
     this.api.interceptors.request.use(
-      (config) => {
+      (config: any) => {
         const token = localStorage.getItem('jwtToken');
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
       },
-      (error) => {
+      (error: any) => {
         return Promise.reject(error);
       }
     );
 
     // Response interceptor to handle errors
     this.api.interceptors.response.use(
-      (response) => response,
-      (error) => {
+      (response: any) => response,
+      (error: any) => {
         if (error.response?.status === 401) {
           localStorage.removeItem('jwtToken');
           window.location.href = '/login';
