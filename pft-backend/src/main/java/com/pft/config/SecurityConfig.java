@@ -80,6 +80,7 @@ public class SecurityConfig {
         configuration.addAllowedOrigin("http://localhost:5174");
         configuration.addAllowedOrigin("http://127.0.0.1:5173");
         configuration.addAllowedOrigin("http://127.0.0.1:5174");
+        configuration.addAllowedOrigin("https://personal-finance-tracker-bvsify2xr.vercel.app");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
